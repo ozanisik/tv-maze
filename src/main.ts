@@ -5,5 +5,9 @@ import router from "./router";
 import store from "./store";
 import "./assets/tailwind.css";
 import "./assets/main.scss";
+import mitt from "mitt";
+const emitter = mitt();
+const app = createApp(App);
+app.config.globalProperties.emitter = emitter;
 
-createApp(App).use(store).use(router).mount("#app");
+app.use(store).use(router).mount("#app");
