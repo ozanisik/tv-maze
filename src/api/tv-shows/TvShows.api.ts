@@ -2,7 +2,7 @@ import HttpClient from "../common/http/HttpClient";
 import { TvShow } from "./TvShow";
 
 const httpClient = new HttpClient({
-  baseURL: process.env.VUE_APP_MAZE_API_URL,
+  baseURL: process.env.VUE_APP_MAZE_API_URL || "",
 });
 
 export const getTvShows = async (): Promise<TvShow[]> => {

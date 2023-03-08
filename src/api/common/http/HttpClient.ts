@@ -22,12 +22,12 @@ export default class HttpClient {
     return response.json();
   }
 
-  public async post<T>(url: string, data?: any): Promise<T> {
+  public async post<T>(url: string, data?: unknown): Promise<T> {
     const response = await this.fetchUrl(url, "POST", data);
     return response.json();
   }
 
-  public async put<T>(url: string, data?: any): Promise<T> {
+  public async put<T>(url: string, data?: unknown): Promise<T> {
     const response = await this.fetchUrl(url, "PUT", data);
     return response.json();
   }
@@ -40,7 +40,7 @@ export default class HttpClient {
   private async fetchUrl(
     url: string,
     method: string,
-    data?: any
+    data?: unknown
   ): Promise<Response> {
     const options: RequestInit = {
       method,

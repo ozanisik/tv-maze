@@ -4,18 +4,27 @@
       <img class="detail-page__left--image" :src="showDetail?.image.original" />
     </div>
     <div class="detail-page__right">
-      <div class="detail-page__right--name">{{ showDetail?.name }}</div>
-      <div class="detail-page__right--summary" v-html="showDetail?.summary" />
+      <div :data-test-id="`${dataTest}-name`" class="detail-page__right--name">
+        {{ showDetail?.name }}
+      </div>
+      <div
+        :data-test-id="`${dataTest}-summary`"
+        class="detail-page__right--summary"
+        v-html="showDetail?.summary"
+      />
       <div class="detail-page--genres">
         <div
           v-for="genre in showDetail?.genres"
           :key="genre"
+          :data-test-id="`${dataTest}-genre-${genre}`"
           class="detail-page--tag"
         >
           {{ genre }}
         </div>
       </div>
-      <div class="detail-page--tag">{{ showDetail?.rating.average }}</div>
+      <div :data-test-id="`${dataTest}-rating`" class="detail-page--tag">
+        {{ showDetail?.rating.average }}
+      </div>
     </div>
   </div>
 </template>
@@ -30,6 +39,7 @@ export default defineComponent({
   name: "DetailPage",
   components: {},
   setup() {
+    const dataTest = "detail-page";
     const route = useRoute();
     const showDetail = ref<TvShow>();
 
@@ -40,6 +50,7 @@ export default defineComponent({
     });
     return {
       showDetail,
+      dataTest,
     };
   },
 });
