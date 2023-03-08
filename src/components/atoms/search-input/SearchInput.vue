@@ -5,8 +5,8 @@
         type="search"
         v-model="searchValue"
         class="search-input"
-        data-test-id="search-component"
-        placeholder="Search Show"
+        :data-test-id="`${dataTest}-input`"
+        placeholder="Search"
         @input="() => emitter.emit('search', searchValue)"
       />
     </div>
@@ -19,6 +19,12 @@ import useEmitter from "@/composables/useEmitter";
 export default defineComponent({
   name: "SearchInput",
   components: {},
+  props: {
+    dataTest: {
+      required: false,
+      default: "search",
+    }
+  },
   setup() {
     const searchValue = ref<string>();
     const emitter = useEmitter();
